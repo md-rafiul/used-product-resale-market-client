@@ -2,7 +2,13 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { Link } from "react-router-dom";
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleSignOut = () => {
+    logOut()
+      .then(() => {})
+      .then((err) => console.log(err));
+  };
 
   const navItems = (
     <>
@@ -30,7 +36,10 @@ const Header = () => {
       {/* if user logged-in login+signup button will be hide and signout button will be shown */}
       {user ? (
         <li>
-          <button className=" inline-block px-6 py-2.5 bg-primary text-white font-medium text-xs leading-tight uppercase rounded shadow-md  hover:shadow-lg  focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out">
+          <button
+            onClick={handleSignOut}
+            className=" inline-block px-6 py-2.5 bg-primary text-white font-medium text-xs leading-tight uppercase rounded shadow-md  hover:shadow-lg  focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out"
+          >
             Sign out
           </button>
         </li>
