@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const SignUp = () => {
-  const { createUser, loading, loginGoogle, updateUserProfile } =
+  const { createUser, loading, setLoading, loginGoogle, updateUserProfile } =
     useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
@@ -30,6 +30,9 @@ const SignUp = () => {
         updateUserProfile(userInfo)
           .then(() => {
             toast("User name updated successfully");
+
+            setLoading(false);
+            navigate(from, { replace: true });
           })
           .catch((error) => console.error(error));
         console.log(result.user);
@@ -41,14 +44,16 @@ const SignUp = () => {
   const handleGoogleIN = () => {
     loginGoogle()
       .then((result) => {
-        console.log(result);
         const user = result.user;
         console.log(user);
+        setLoading(false);
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);
       });
   };
+
   return (
     <div className=" flex justify-center my-4">
       <div className="card bg-base-100 shadow-xl w-2/6 mb-1">

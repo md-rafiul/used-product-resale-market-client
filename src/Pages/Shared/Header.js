@@ -23,26 +23,27 @@ const Header = () => {
         </Link>
       </li>
       {/* if user logged in then these route will be shown */}
-      {user && (
-        <li>
-          <Link
-            className="px-4 py-2 mb-2 border-b-[2px] rounded-md"
-            to="/dashboard"
-          >
-            Dashboard
-          </Link>
-        </li>
-      )}
+
       {/* if user logged-in login+signup button will be hide and signout button will be shown */}
       {user ? (
-        <li>
-          <button
-            onClick={handleSignOut}
-            className=" inline-block px-6 py-2.5 bg-primary text-white font-medium text-xs leading-tight uppercase rounded shadow-md  hover:shadow-lg  focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out"
-          >
-            Sign out
-          </button>
-        </li>
+        <div className="flex">
+          <li tabIndex="0">
+            <Link
+              className="px-3 py-1 mx-2 border-b-[2px] rounded-md"
+              to="/dashboard"
+            >
+              Dashboard
+            </Link>
+          </li>
+          <li>
+            <button
+              onClick={handleSignOut}
+              className=" inline-block px-6 py-2.5 bg-primary text-white font-medium text-xs leading-tight uppercase rounded shadow-md  hover:shadow-lg  focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out"
+            >
+              Sign out
+            </button>
+          </li>
+        </div>
       ) : (
         <>
           <div>
@@ -78,12 +79,7 @@ const Header = () => {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                <path
-                  stroke-linecap="round"
-                  strokeLinecap="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
+                <path strokeLinecap="round" d="M4 6h16M4 12h8m-8 6h16" />
               </svg>
             </label>
             <ul
@@ -93,7 +89,10 @@ const Header = () => {
               {navItems}
             </ul>
           </div>
-          <Link to="/" className="text-xl font-bold active:scale-105">
+          <Link
+            to="/"
+            className="text-xl font-bold btn-ghost p-1 active:scale-105"
+          >
             Laptop HAVEN
           </Link>
         </div>
