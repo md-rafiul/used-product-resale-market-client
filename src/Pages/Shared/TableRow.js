@@ -1,7 +1,6 @@
 import React from "react";
 
-const TableRow = ({ user, i }) => {
-  const handleDelete = () => {};
+const TableRow = ({ user, i, handleDelete }) => {
   const handleVarify = () => {};
   return (
     <tr className="hover">
@@ -15,7 +14,10 @@ const TableRow = ({ user, i }) => {
         </button>
       </td>
       <td>
-        <button className="btn btn-error" onClick={handleDelete}>
+        <button
+          className="btn btn-error"
+          onClick={() => handleDelete(user._id)}
+        >
           Delete
         </button>
       </td>

@@ -4,9 +4,10 @@ import CategoryCard from "../Shared/CategoryCard";
 import ProdCard from "../Shared/ProdCard";
 import Aboutus from "./Aboutus";
 import Banner from "./Banner";
+import { Dna } from "react-loader-spinner";
 
 const Home = () => {
-  const { addvertise } = useContext(AuthContext);
+  const { addvertise, loading } = useContext(AuthContext);
   const [prods, setProds] = useState([]);
   const category = [
     {
@@ -31,6 +32,20 @@ const Home = () => {
         setProds(data);
       });
   }, []);
+  if (loading) {
+    return (
+      <div className="flex justify-center text-center py-60">
+        <Dna
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="dna-loading"
+          wrapperStyle={{}}
+          wrapperClass="dna-wrapper"
+        />
+      </div>
+    );
+  }
   return (
     <div className="">
       {/* Admin ID: md.rafiul@gmail.com PASS: 123456 */}

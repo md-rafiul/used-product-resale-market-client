@@ -87,7 +87,7 @@ const AddProduct = () => {
           setLoading(false);
           e.target.reset();
 
-          navigate("/myproducts", { replace: true });
+          navigate("/dashboard/myproducts", { replace: true });
         }
       });
   };

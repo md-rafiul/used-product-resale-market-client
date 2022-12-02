@@ -1,10 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import TableRow from "../../Shared/TableRow";
 
 const AllBuyers = () => {
   const allBuyerData = useLoaderData();
   console.log(allBuyerData);
+
+  const [buyerData, setBuyerData] = useState(allBuyerData);
+
+  const handleDelete = (id) => {
+    const proceed = window.confirm(
+      "Are you sure you want to remove this item???"
+    );
+    if (proceed) {
+      fetch(`http://localhost:5000/users/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.deletedCount > 0) {
+            alert("delete successfully");
+            const remaining = buyerData.filter((feed) => feed._id !== id);
+            setBuyerData(remaining);
+          }
+        });
+    }
+  };
+
   return (
     <div className=" p-6">
       <h2 className="text-4xl font-bold text-center mb-6">All Buyers List</h2>
@@ -21,8 +44,13 @@ const AllBuyers = () => {
             </tr>
           </thead>
           <tbody>
-            {allBuyerData.map((user, i) => (
-              <TableRow key={i} i={i} user={user}></TableRow>
+            {buyerData.map((user, i) => (
+              <TableRow
+                key={i}
+                i={i}
+                user={user}
+                handleDelete={handleDelete}
+              ></TableRow>
             ))}
           </tbody>
         </table>
