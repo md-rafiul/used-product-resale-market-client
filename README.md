@@ -3,3 +3,6 @@
  3. User can track their order
  4. Admin can  delete buyers and sellers
  5. Also admin can track all added products
+
+
+live: https://resalemarketassignment12.web.app
