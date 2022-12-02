@@ -24,7 +24,7 @@ const Home = () => {
   ];
   console.log(addvertise);
   useEffect(() => {
-    fetch(`http://localhost:5000/products`)
+    fetch(`https://b612-used-products-resale-server.vercel.app/products`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

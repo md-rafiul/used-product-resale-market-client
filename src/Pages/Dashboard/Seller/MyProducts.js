@@ -7,7 +7,9 @@ const MyProducts = () => {
   const [myProds, setMyProds] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/products?sellerEmail=${user?.email}`)
+    fetch(
+      `https://b612-used-products-resale-server.vercel.app/products?sellerEmail=${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

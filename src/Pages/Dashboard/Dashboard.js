@@ -7,7 +7,9 @@ const Dashboard = () => {
   const [currentRole, setCurrentRole] = useState("seller");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/users?email=${user?.email}`)
+    fetch(
+      `https://b612-used-products-resale-server.vercel.app/users?email=${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setCurrentRole(data[0].role);

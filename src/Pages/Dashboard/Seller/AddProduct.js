@@ -73,7 +73,7 @@ const AddProduct = () => {
     };
     console.log(addedProduct);
 
-    fetch(`http://localhost:5000/products`, {
+    fetch(`https://b612-used-products-resale-server.vercel.app/products`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

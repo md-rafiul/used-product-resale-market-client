@@ -64,12 +64,18 @@ const router = createBrowserRouter([
           {
             path: "/dashboard/allsellers",
             element: <AllSellers></AllSellers>,
-            loader: () => fetch("http://localhost:5000/users?role=seller"),
+            loader: () =>
+              fetch(
+                "https://b612-used-products-resale-server.vercel.app/users?role=seller"
+              ),
           },
           {
             path: "/dashboard/allbuyers",
             element: <AllBuyers></AllBuyers>,
-            loader: () => fetch("http://localhost:5000/users?role=buyer"),
+            loader: () =>
+              fetch(
+                "https://b612-used-products-resale-server.vercel.app/users?role=buyer"
+              ),
           },
         ],
       },
