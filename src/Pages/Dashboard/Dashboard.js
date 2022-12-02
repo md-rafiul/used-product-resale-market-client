@@ -27,7 +27,7 @@ const Dashboard = () => {
             Hello <span className="text-accent">{user?.displayName}</span>,
             Welcome to dashboard
           </h2>
-          <Outlet />
+
           {/* <!-- Page content here --> */}
           <label
             htmlFor="dashboard-drawer"
@@ -35,6 +35,7 @@ const Dashboard = () => {
           >
             =
           </label>
+          <Outlet />
         </div>
         <div className="drawer-side ">
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>

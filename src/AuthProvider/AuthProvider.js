@@ -16,6 +16,7 @@ export const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [addvertise, setAddvertise] = useState([]);
   const [loading, setLoading] = useState(true);
   const Googleprovider = new GoogleAuthProvider();
 
@@ -62,6 +63,8 @@ const AuthProvider = ({ children }) => {
     login,
     logOut,
     loginGoogle,
+    addvertise,
+    setAddvertise,
   };
 
   return (

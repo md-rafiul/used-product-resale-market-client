@@ -1,10 +1,12 @@
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 const AddProduct = () => {
-  const { user } = useContext(AuthContext);
+  const { user, setLoading } = useContext(AuthContext);
   const [category, setCategory] = useState("ASUS");
+  const navigate = useNavigate();
   const handleCategory = (e) => {
     setCategory(e.target.value);
   };
@@ -50,6 +52,9 @@ const AddProduct = () => {
     const year = e.target.year.value;
     handleImg();
     const img = image;
+    if (img === null) {
+      handleImg();
+    }
 
     const addedProduct = {
       name,
@@ -68,20 +73,23 @@ const AddProduct = () => {
     };
     console.log(addedProduct);
 
-    // fetch(`http://localhost:5000/products`, {
-    //   method: "POST",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(addedProduct),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     if (data.acknowledged) {
-    //       toast.success("Product successfully added");
-    //       e.target.reset();
-    //     }
-    //   });
+    fetch(`http://localhost:5000/products`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(addedProduct),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Product successfully added");
+          setLoading(false);
+          e.target.reset();
+
+          navigate("/myproducts", { replace: true });
+        }
+      });
   };
   return (
     <div className="lg:w-[70%] md:w-[80%] w-[90%] mx-auto my-10">
@@ -123,6 +131,7 @@ const AddProduct = () => {
                 name="category"
                 onChange={handleCategory}
               >
+                <option disabled>Choose Category</option>
                 <option value="ASUS">ASUS</option>
                 <option value="APPLE">APPLE</option>
                 <option value="HP">HP</option>
@@ -160,6 +169,7 @@ const AddProduct = () => {
                 name="category"
                 onChange={handleCondition}
               >
+                <option disabled>Choose Condition</option>
                 <option value="Good">Good</option>
                 <option value="excellent">Excellent</option>
                 <option value="fair">Fair</option>
