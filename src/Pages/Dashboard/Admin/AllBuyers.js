@@ -13,7 +13,7 @@ const AllBuyers = () => {
       "Are you sure you want to remove this item???"
     );
     if (proceed) {
-      fetch(`http://localhost:5000/users/${id}`, {
+      fetch(`https://b612-used-products-resale-server.vercel.app/users/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())

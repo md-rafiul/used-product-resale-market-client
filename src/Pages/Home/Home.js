@@ -7,7 +7,7 @@ import Banner from "./Banner";
 import { Dna } from "react-loader-spinner";
 
 const Home = () => {
-  const { addvertise, loading } = useContext(AuthContext);
+  const { addvertise, loading, setLoading } = useContext(AuthContext);
   const [prods, setProds] = useState([]);
   const category = [
     {
@@ -30,8 +30,9 @@ const Home = () => {
       .then((data) => {
         console.log(data);
         setProds(data);
+        setLoading(false);
       });
-  }, []);
+  }, [setLoading]);
   if (loading) {
     return (
       <div className="flex justify-center text-center py-60">
